@@ -66,7 +66,7 @@ void countOneChildNodes(bsttype* root, int* n){
 int main() {
     int ch;
     bsttype* root = NULL;
-    printf("Enter 1 to insert node\n2 to display\n3 to count no.nodes");
+    printf("Enter 1 to insert node\n2 to display\n3 to count no.nodes\n4 to count leaf nodes\n5 to count one child nodes");
     do{
         printf("\nchoice:");
         scanf("%d", &ch);
