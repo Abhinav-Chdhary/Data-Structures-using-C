@@ -1,9 +1,8 @@
 /*
-program to create two linked lists positive and negative from a Original
-linked list, so that positive linked list contains all positive
-elements and negative linked list contains negative elements. Positive
-and negative linked lists should use the node of existing original 
-linked list. 
+Write a C program to create a linked list P, and then write a ‘C’
+function named split to create two linked lists Q & R from P So
+that Q contains all elements in odd positions of P and R contain
+the remaining elements. Finally print both linked lists i.e. Q and R.
 */
 typedef struct node{
 	int data;
@@ -20,14 +19,16 @@ void insertNode(nodetype **head, int x){
 	p->next = *head;
     *head = p;
 }
-//negative and positive separator
-void separator(nodetype *head, nodetype **pos, nodetype **neg){
-    while(head!=NULL){
-        if(head->data >= 0)
-            insertNode(pos, head->data);
+//odd/even separator based on position
+void separator(nodetype *P, nodetype **Q, nodetype **R){
+    int i=1;
+    while(P!=NULL){
+        if(i%2)
+            insertNode(Q, P->data);
         else
-            insertNode(neg, head->data);
-        head = head->next;
+            insertNode(R, P->data);
+        P = P->next;
+        i++;
     }
 }
 //display function
@@ -43,22 +44,22 @@ int main(){
     int n;
     printf("Enter num of nodes: ");
     scanf("%d", &n);
-    nodetype *head = NULL, *positive= NULL, *negative=NULL;
+    nodetype *P = NULL, *Q= NULL, *R=NULL;
     printf("Enter a linked list elements:\n");
     while (n!=0)
     {
         int x;
         scanf("%d", &x);
-        insertNode(&head, x);
+        insertNode(&P, x);
         n--;
     }
     //separating the nodes
-    separator(head, &positive, &negative);
+    separator(P, &Q, &R);
     //printing...
-    printf("positive elements are: ");
-    display(positive);
+    printf("elements at odd positions are: ");
+    display(Q);
     printf("negative elements are: ");
-    display(negative);
+    display(R);
     
     return 0;
 }
