@@ -44,7 +44,7 @@ int main(){
     printf("Enter num of nodes: ");
     scanf("%d", &n);
     nodetype *head = NULL, *positive= NULL, *negative=NULL;
-    printf("Enter a linked list elements:\n");
+    printf("Enter linked list elements:\n");
     while (n!=0)
     {
         int x;
