@@ -43,7 +43,7 @@ void countNodes(bsttype* root, int* n){
     ++(*n);
 }
 //function to count number of leaf nodes
-int countLeafNodes(bsttype* root, int* n){
+void countLeafNodes(bsttype* root, int* n){
     if(root==NULL)
         return;
     countLeafNodes(root->left, n);
