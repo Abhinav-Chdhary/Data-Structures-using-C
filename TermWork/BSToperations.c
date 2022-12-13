@@ -9,7 +9,7 @@
 //program to perform basic operations of a binary search tree
 #include <stdio.h>
 #include <stdlib.h>
-#include <cmath>
+#include <math.h>
 
 typedef struct bst{
     struct bst* left;
@@ -41,6 +41,10 @@ void display(bsttype* root){
     display(root->left);
     printf("%d ", root->data);
     display(root->right);
+}
+//simple math function to return max
+int max(int a, int b){
+    return a>=b? a: b;
 }
 //1.function to search a particular key
 void searchTree(bsttype* root, int target){
@@ -102,18 +106,16 @@ void countLeafNodes(bsttype* root, int* n){
         ++(*n);
 }
 //4.function to find height of a binary tree
-// CAUTION not complete!
 int findHeightOfBST(bsttype* root){
-    if(root==NULL)
+    if(root==NULL || (root->left==NULL && root->right==NULL))
         return 0;
-    return max(findHeightOfBST(root->left), findHeightOfBST(root->right));
+    return max(findHeightOfBST(root->left), findHeightOfBST(root->right))+1;
 }
 //5.funtion to calculate total number of nodes from right hand side
-// CAUTION not complete!
 int rightCount(bsttype* root){
     if(root==NULL)
         return 0;
-    return rightCount(root->right);
+    return rightCount(root->right)+rightCount(root->left)+1;
 }
 
 int main() {
@@ -121,6 +123,7 @@ int main() {
     bsttype* root = NULL;
     printf("Enter 1 to insert node\n2 to display\n3 to search a key");
     printf("\n4 to delete a Node from the tree\n5 to count leaf nodes");
+    printf("\n6 to find height of the tree\n7 to count total nodes in right subtree");
     do{
         printf("\nchoice:");
         scanf("%d", &ch);
@@ -164,9 +167,18 @@ int main() {
                         printf("%d nodes\n", n);
                     }
                     break;
-            case 6: //to find height of BST
+            case 6:
+                    if(root==NULL)
+                        printf("Tree is empty\n");
+                    else{
+                        printf("height: %d\n", findHeightOfBST(root));
+                    }
                     break;
-            case 7: //to find total no. of nodes from right hand side
+            case 7: if(root==NULL)
+                        printf("Tree is empty\n");
+                    else{
+                        printf("num of Nodes: %d\n", rightCount(root->right));
+                    }
                     break;
         }
     }while(ch>0 && ch<8);
