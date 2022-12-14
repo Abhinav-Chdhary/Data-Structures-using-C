@@ -1,4 +1,9 @@
 /*
+Abhinav Choudhary
+B.tech CST
+3rd Sem
+uni roll: 21021726
+class roll: 49
 Write a C program to create a linked list P, and then write a ‘C’
 function named split to create two linked lists Q & R from P So
 that Q contains all elements in odd positions of P and R contain

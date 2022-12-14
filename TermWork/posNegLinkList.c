@@ -1,4 +1,9 @@
 /*
+Abhinav Choudhary
+B.tech CST
+3rd Sem
+uni roll: 21021726
+class roll: 49
 program to create two linked lists positive and negative from a Original
 linked list, so that positive linked list contains all positive
 elements and negative linked list contains negative elements. Positive

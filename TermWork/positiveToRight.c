@@ -1,4 +1,10 @@
-/*Write a C Program to store N elements to an array and then send
+/*
+Abhinav Choudhary
+B.tech CST
+3rd Sem
+uni roll: 21021726
+class roll: 49
+Write a C Program to store N elements to an array and then send
  all positive elements of the 
  array to the end without altering the original sequence.
 */

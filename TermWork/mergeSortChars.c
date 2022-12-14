@@ -1,4 +1,10 @@
-/*Write a C program to sort an unsorted sequence of strings
+/*
+Abhinav Choudhary
+B.tech CST
+3rd Sem
+uni roll: 21021726
+class roll: 49
+Write a C program to sort an unsorted sequence of strings
  given by user in an array, using 
  Merge sort technique*/
 //CAUTION program is not complete!
