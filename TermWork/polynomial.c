@@ -1,10 +1,5 @@
 /*
-Abhinav Choudhary
-B.tech CST
-3rd Sem
-uni roll: 21021726
-class roll: 49
-
+Q4.
 Write a C program to add of two polynomials
  of degree n, using linked list
  p1 = first polynomial 
@@ -14,7 +9,7 @@ Write a C program to add of two polynomials
 */
 #include<stdio.h>
 #include<stdlib.h>
-#include<math.h>
+
 typedef struct node{
     int data;
     struct node *next;

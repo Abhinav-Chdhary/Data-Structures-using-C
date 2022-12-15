@@ -1,9 +1,5 @@
 /*
-Abhinav Choudhary
-B.tech CST
-3rd Sem
-uni roll: 21021726
-class roll: 49
+Q.5
 Write a C program to implement time sharing environment
 (using circular linked list) for N processes, where CPU allocates
 time slots of 10ns for given N processes, then print which 

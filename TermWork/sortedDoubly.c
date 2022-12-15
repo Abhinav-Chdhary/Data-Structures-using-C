@@ -1,9 +1,4 @@
 /*
-Abhinav Choudhary
-B.tech CST
-3rd Sem
-uni roll: 21021726
-class roll: 49
 .Write a C program to create a double linked list by inserting
  nodes in such a way that the resultant linked list remains
  in ascending order.(do not use any sorting technique).
@@ -72,6 +67,7 @@ int main(){
     }
 
     //display function
+    printf("sorted: ");
     display(head);
     
     return 0;

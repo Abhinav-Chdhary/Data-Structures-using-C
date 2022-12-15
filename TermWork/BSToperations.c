@@ -1,9 +1,5 @@
 /*
-Abhinav Choudhary
-B.tech CST
-3rd Sem
-uni roll: 21021726
-class roll: 49
+Q7. 
  Write a C program to create a binary search tree and perform
  following operations:
  1) Search a particular key. 
@@ -169,7 +165,7 @@ int main() {
                     else{
                         int n=0;
                         countLeafNodes(root, &n);
-                        printf("%d nodes\n", n);
+                        printf("%d leaf nodes\n", n);
                     }
                     break;
             case 6:
@@ -182,7 +178,7 @@ int main() {
             case 7: if(root==NULL)
                         printf("Tree is empty\n");
                     else{
-                        printf("num of Nodes: %d\n", rightCount(root->right));
+                        printf("num of Nodes in Right subtree: %d\n", rightCount(root->right));
                     }
                     break;
         }

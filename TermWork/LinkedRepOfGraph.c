@@ -1,9 +1,4 @@
-/*
-Abhinav Choudhary
-B.tech CST
-3rd Sem
-uni roll: 21021726
-class roll: 49
+/*Q9.
 Write a C program to implement linked representation of a
  graph in memory using array of 
  pointers.*/

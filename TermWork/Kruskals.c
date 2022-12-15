@@ -59,10 +59,10 @@ void createEdges(graphtype* graph, int n){
     }
 }
 //function to sort data in array
-void bubbleSort
-void createEdgeList(graphtype* g, int edgeList, int n){
+//void bubbleSort
+//void createEdgeList(graphtype* g, int edgeList, int n){
     //work in progress
-}
+//}
 //trying to simulate kruskal's algorithm
 int kruskals(graphtype* g, int n){
     

@@ -1,15 +1,22 @@
 /*
-Abhinav Choudhary
-B.tech CST
-3rd Sem
-uni roll: 21021726
-class roll: 49
 Write a C Program to store N elements to an array and then send
  all positive elements of the 
  array to the end without altering the original sequence.
 */
 #include <stdio.h>
 #include <stdlib.h>
+
+void positiveToRight(int arr[], int n){
+    for(int i=0; i<n-1; i++){
+        for(int j=0; j<n-i-1; j++){
+            if(arr[j]>=0 && arr[j+1]<0){
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+}
 
 int main(){
     int x;
@@ -22,15 +29,7 @@ int main(){
     for(int i=0; i<n; i++){
         scanf("%d", &arr[i]);
     }
-    for(int i=0; i<n-1; i++){
-        for(int j=0; j<n-i-1; j++){
-            if(arr[j]>=0 && arr[j+1]<0){
-                int temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }
-        }
-    }
+    positiveToRight(arr, n);
     for(int i=0; i<n; i++){
         printf("%d ", arr[i]);
     }
