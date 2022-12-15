@@ -88,16 +88,18 @@ int getNodeData(linktype* head, int j){
 int kruskals(graphtype* g, int n){
     int i=0, j=0, k=0, total=0;
     while(i!=n-1){
-        if(k==n-1){
+        if(k==n){
+            //resetting k and incrementing j
             k=0; j++;
         }
-        int p = getNodeData(g->head, j);
+        int p = getNodeData((g+k)->head, j);
         if(p!=0){
             total+=p;
             i++;
         }
         k++;
     }
+    return total;
 }
 //display
 void display(graphtype* graph, int n){
