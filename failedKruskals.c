@@ -39,8 +39,23 @@ void addEdge(linktype** head, int src, int dst, int wt){
         return;
     }
     
-    p->next = *head;
-    *head = p;
+    linktype *temp = (*head);
+    linktype *prev = NULL;
+    int insertedFlag=0;
+    do{  
+        if(temp==NULL || wt<temp->wt){
+            if(prev!=NULL){
+                prev->next = p;
+            }
+            else{
+                (*head) = p;
+            }
+            p->next = temp;
+            return;
+        }
+        prev = temp;
+        temp = temp->next;
+    }while(1);
 }
 //function to add Edges to Nodes of graph
 void createEdges(graphtype* graph, int n){
@@ -58,14 +73,36 @@ void createEdges(graphtype* graph, int n){
         }while(ch==1);
     }
 }
-//function to sort data in array
-void bubbleSort
+//supply appropriate node data
+int getNodeData(linktype* head, int j){
+    if(head==NULL)
+        return 0;
+    if(j==0)
+        return head->wt;
+    while(j--){
+        head=head->next;
+    }
+    return head->wt;
+}
 void createEdgeList(graphtype* g, int edgeList, int n){
     //work in progress
 }
 //trying to simulate kruskal's algorithm
 int kruskals(graphtype* g, int n){
-    
+    int i=0, j=0, k=0, total=0;
+    while(i!=n-1){
+        if(k==n){
+            //resetting k and incrementing j
+            k=0; j++;
+        }
+        int p = getNodeData((g+k)->head, j);
+        if(p!=0){
+            total+=p;
+            i++;
+        }
+        k++;
+    }
+    return total;
 }
 //display
 void display(graphtype* graph, int n){
@@ -73,7 +110,7 @@ void display(graphtype* graph, int n){
         printf("%d ", (graph+i)->data);
         linktype* temp = (graph+i)->head;
         while(temp!=NULL){
-            printf("--%d-- %d ", temp->wt, temp->dst);
+            printf("--%d--> %d ", temp->wt, temp->dst);
             temp = temp->next;
         }
         printf("\n");
@@ -90,8 +127,8 @@ int main() {
     addNodes(graph, n);
     createEdges(graph, n);
     display(graph, n);
-    //int result = kruskals(graph, n);
-    //printf("kruskals result: %d", result);
+    int result = kruskals(graph, n);
+    printf("kruskals result: %d", result);
 
     return 0;
 }
