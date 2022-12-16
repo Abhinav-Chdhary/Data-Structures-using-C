@@ -1,102 +1,75 @@
-/*
-Abhinav Choudhary
-B.tech CST
-3rd Sem
-uni roll: 21021726
-class roll: 49
-
-10.Write a C program to implement DFS.
+/*Q10.
+Write a C program to implement DFS.
 */
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node {
-    int vertex;
-    struct node* next;
+#define MAX_NODES 100
+
+// define a structure for a graph node
+typedef struct Node {
+  int data;
+  struct Node *next;
 }nodetype;
 
+// define a structure for a graph
 typedef struct Graph {
-    int numVertices;
-    int* visited;
-
-    nodetype** adjLists;
+  int numNodes;
+  struct Node* nodes[MAX_NODES];
 }graphtype;
-// Create a node
-nodetype* createNode(int v) {
-    struct node* p = (nodetype*)malloc(sizeof(nodetype));
-    p->vertex = v;
-    p->next = NULL;
-    return p;
-}
-// DFS algo
-void DFS(struct Graph* graph, int vertex) {
-    struct node* adjList = graph->adjLists[vertex];
-    struct node* temp = adjList;
 
-    graph->visited[vertex] = 1;
-    printf("Visited %d \n", vertex);
-
-    while (temp != NULL) {
-    int connectedVertex = temp->vertex;
-
-    if (graph->visited[connectedVertex] == 0) {
-        DFS(graph, connectedVertex);
-    }
-    temp = temp->next;
-    }
-}
-// Create graph
-graphtype* createGraph(int vertices){
-    graphtype* graph = (graphtype*)malloc(sizeof(graphtype));
-    graph->numVertices = vertices;
-    graph->adjLists = (nodetype*)malloc(vertices * sizeof(nodetype*));
-    graph->visited = (int*)malloc(vertices * sizeof(int));
-
-    int i;
-    for (i = 0; i < vertices; i++) {
-        graph->adjLists[i] = NULL;
-        graph->visited[i] = 0;
-    }
-    return graph;
+// create a new graph node
+nodetype* createNode(int data) {
+  nodetype* node = (struct Node*)malloc(sizeof(nodetype));
+  node->data = data;
+  node->next = NULL;
+  return node;
 }
 
-// Add edge
-void addEdge(graphtype* graph, int src, int dest){
-    // Add edge from src to dest
-    nodetype* p = createNode(dest);
-    p->next = graph->adjLists[src];
-    graph->adjLists[src] = p;
-
-    // Add edge from dest to src
-    p = createNode(src);
-    p->next = graph->adjLists[dest];
-    graph->adjLists[dest] = p;
+// add an edge to the graph
+void addEdge(graphtype* graph, int src, int dest) {
+  nodetype* newNode = createNode(dest);
+  newNode->next = graph->nodes[src];
+  graph->nodes[src] = newNode;
 }
 
-// Print the graph
-void printGraph(graphtype* graph){
-    int v;
-    for (v = 0; v < graph->numVertices; v++){
-    nodetype* temp = graph->adjLists[v];
-    printf("\n Adjacency list of vertex %d\n ", v);
-    while (temp) {
-      printf("%d -> ", temp->vertex);
-      temp = temp->next;
+// perform a depth-first search starting from the given node
+void DFS(graphtype* graph, int node, int visited[]) {
+  visited[node] = 1;
+  printf("%d ", node);
+
+  nodetype* current = graph->nodes[node];
+  while (current != NULL) {
+    int neighbor = current->data;
+    if (!visited[neighbor]) {
+      DFS(graph, neighbor, visited);
     }
-    printf("\n");
-    }
+    current = current->next;
+  }
 }
 
 int main() {
-    struct Graph* graph = createGraph(4);
-    addEdge(graph, 0, 1);
-    addEdge(graph, 0, 2);
-    addEdge(graph, 1, 2);
-    addEdge(graph, 2, 3);
+  // create a graph with 4 nodes
+  graphtype* graph = (struct Graph*)malloc(sizeof(struct Graph));
+  graph->numNodes = 4;
 
-    printGraph(graph);
+  // add edges to the graph
+  addEdge(graph, 0, 1);
+  addEdge(graph, 0, 2);
+  addEdge(graph, 1, 2);
+  addEdge(graph, 2, 0);
+  addEdge(graph, 2, 3);
+  addEdge(graph, 3, 3);
 
-    DFS(graph, 2);
+  // array to keep track of visited nodes
+  int visited[MAX_NODES];
+  for (int i = 0; i < MAX_NODES; i++) {
+    visited[i] = 0;
+  }
 
-    return 0;
+  // perform a DFS starting from node 2
+  printf("Nodes in the order that they were visited:\n");
+  DFS(graph, 2, visited);
+
+  return 0;
 }
