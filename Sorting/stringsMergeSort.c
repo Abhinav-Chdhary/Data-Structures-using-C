@@ -1,16 +1,6 @@
-/*Q8. Write a C program to sort an unsorted sequence of strings given by the user in an array using merge sort technique. */
-//CAUTION THIS PROGRAM MAY NOT WORK FOR SOME TEST CASES
 #include <stdio.h>
 #include <string.h>
-#define max 10
-/* Function to print an array */
-void printArray(int arr[], int size)
-{
-    int i;
-    for (i=0; i < size; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
-}
+#define max 20
 
 void merge(char words[][max], int l, int m, int r)
 {
@@ -46,17 +36,13 @@ void merge(char words[][max], int l, int m, int r)
     /* Copy the remaining elements of L[], if there
     are any */
     while (i < n1) {
-        strcpy(words[k], L[i]);
-        i++;
-        k++;
+        strcpy(words[k++], L[i++]);
     }
  
     /* Copy the remaining elements of R[], if there
     are any */
     while (j < n2) {
-        strcpy(words[k], R[j]);
-        j++;
-        k++;
+        strcpy(words[k++], R[j++]);
     }
 }
  
@@ -85,7 +71,7 @@ int main(){
     }
     mergeSort(words, 0, n-1);
     for(int i=0; i<n; i++){
-        printf("%s\n", words[i]);
+        printf("%s ", words[i]);
     }
     return 0;
 }
